@@ -1,0 +1,37 @@
+{
+    "name": "ts-dual-package-example",
+    "type": "module",
+    "scripts": {
+        "build": "tsc -p ./tsconfig.json && tsc -p ./cjs/tsconfig.json"
+    },
+    "types": "./cjs/dist/index.d.ts",
+    "main": "./cjs/dist/index.js",
+    "exports": {
+        ".": {
+            "import": {
+                "type": "./esm/index.d.ts",
+                "default": "./esm/index.js"
+            },
+            "require": {
+                "type": "./cjs/dist/index.d.ts",
+                "default": "./cjs/dist/index.js"
+            }
+        },
+        "./constant": {
+            "import": {
+                "type": "./esm/constant.d.ts",
+                "default": "./esm/constant.js"
+            },
+            "require": {
+                "type": "./cjs/dist/constant.d.ts",
+                "default": "./cjs/dist/constant.js"
+            }
+        }
+    },
+    "typesVersions": {
+        "*": {
+            ".": ["./cjs/dist/index.d.ts"],
+            "./constant": ["./cjs/dist/constant.d.ts"]
+        }
+    }
+}
